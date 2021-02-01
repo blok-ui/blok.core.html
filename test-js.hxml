@@ -1,0 +1,9 @@
+-cp src
+-cp test
+
+-lib medic
+-lib blok.core
+
+-main Run
+
+-js dist/test.js

@@ -1,0 +1,10 @@
+{
+  "name": "blok.core.html",
+  "contributors": [ "wartman" ],
+  "version": "0.0.1",
+  "releasenote": "Pre-release",
+  "license": "MIT",
+  "dependencies": {
+    "blok.core": "0.0.1"
+  }
+}
