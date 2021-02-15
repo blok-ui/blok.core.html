@@ -21,7 +21,7 @@ typedef TagInfo = {
 
 class HtmlBuilder {
   public static function build(tagPath:String, nodeTypeE:Expr, ?prefix:String) {
-    var nodeType = BuilderHelpers.extractBuildCt(nodeTypeE);
+    var nodeType = BuilderHelpers.extractComplexTypeFromExpr(nodeTypeE);
     var fields = Context.getBuildFields();
     var tags = getTags(tagPath);
 
