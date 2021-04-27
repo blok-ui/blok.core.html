@@ -1,5 +1,3 @@
-class Run {
-  static function main() {
-    
-  }
+function main() {
+  
 }

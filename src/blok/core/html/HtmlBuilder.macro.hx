@@ -33,12 +33,9 @@ class HtmlBuilder {
           public static inline function $name(
             props:blok.core.html.HtmlBaseProps.HtmlChildrenProps<$type & blok.core.html.HtmlEvents, $nodeType>
           ):blok.VNode {
-            return VNative(
+            return VComponent(
               blok.NodeType.get($v{prefix != null ? '$prefix:${tag.name}' : name}),
-              if (props.attrs != null) props.attrs else {},
-              props.ref,
-              props.key,
-              props.children
+              props
             );
           }
         }).fields);
@@ -50,12 +47,12 @@ class HtmlBuilder {
           public static inline function $name(
             props:blok.core.html.HtmlBaseProps<$type & blok.core.html.HtmlEvents, $nodeType>
           ):blok.VNode {
-            return VNative(
+            return VComponent(
               blok.NodeType.get($v{prefix != null ? '$prefix:${tag.name}' : name}),
-              if (props.attrs != null) props.attrs else {},
-              props.ref,
-              props.key,
-              []
+              {
+                attrs: props.attrs,
+                ref: props.ref
+              }
             );
           }
         }).fields);
