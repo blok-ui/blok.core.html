@@ -20,9 +20,15 @@ typedef TagInfo = {
 }
 
 class HtmlBuilder {
-  public static function build(tagPath:String, nodeTypeE:Expr, ?prefix:String) {
-    var nodeType = BuilderHelpers.extractComplexTypeFromExpr(nodeTypeE);
+  public static function build(
+    tagPath:String,
+    nodeTypePath:String,
+    realNodeType:Expr, 
+    ?prefix:String
+  ) {
+    var nodeType = BuilderHelpers.extractComplexTypeFromExpr(realNodeType);
     var fields = Context.getBuildFields();
+    var nt = macro $p{nodeTypePath.split('.')};
     var tags = getTags(tagPath);
 
     for (tag in tags) switch tag.kind {
@@ -34,7 +40,7 @@ class HtmlBuilder {
             props:blok.core.html.HtmlBaseProps.HtmlChildrenProps<$type & blok.core.html.HtmlEvents, $nodeType>
           ):blok.VNode {
             return VComponent(
-              blok.NodeType.get($v{prefix != null ? '$prefix:${tag.name}' : name}),
+              ${nt}.get($v{prefix != null ? '$prefix:${tag.name}' : name}),
               props
             );
           }
@@ -48,7 +54,7 @@ class HtmlBuilder {
             props:blok.core.html.HtmlBaseProps<$type & blok.core.html.HtmlEvents, $nodeType>
           ):blok.VNode {
             return VComponent(
-              blok.NodeType.get($v{prefix != null ? '$prefix:${tag.name}' : name}),
+              ${nt}.get($v{prefix != null ? '$prefix:${tag.name}' : name}),
               {
                 attrs: props.attrs,
                 ref: props.ref
