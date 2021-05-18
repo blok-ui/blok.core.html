@@ -3,7 +3,7 @@ package blok.core.html;
 import haxe.macro.Type;
 import haxe.macro.Expr;
 import haxe.macro.Context;
-import blok.core.BuilderHelpers;
+import blok.tools.BuilderHelpers;
 
 using haxe.macro.Tools;
 
