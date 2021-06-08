@@ -16,17 +16,17 @@ enum abstract TagKind(String) to String {
 typedef TagInfo = {
   name:String,
   kind:TagKind,
-  type:Type  
+  type:Type
 }
 
 class HtmlBuilder {
   public static function build(
     tagPath:String,
     nodeTypePath:String,
-    realNodeType:Expr, 
+    navtiveVNodeFactory:Expr, 
     ?prefix:String
   ) {
-    var nodeType = BuilderHelpers.extractComplexTypeFromExpr(realNodeType);
+    var nodeType = BuilderHelpers.extractComplexTypeFromExpr(navtiveVNodeFactory);
     var fields = Context.getBuildFields();
     var nt = macro $p{nodeTypePath.split('.')};
     var tags = getTags(tagPath);
@@ -37,12 +37,20 @@ class HtmlBuilder {
         var type = tag.type.toComplexType();
         fields = fields.concat((macro class {
           public static inline function $name(
-            props:blok.core.html.HtmlBaseProps.HtmlChildrenProps<$type & blok.core.html.HtmlEvents, $nodeType>
+            attrs:$type & blok.core.html.HtmlEvents & {
+              ?key:Key,
+              ?ref:(node:$nodeType)->Void,
+            },
+            ...children:VNode
+            // props:blok.core.html.HtmlBaseProps.HtmlChildrenProps<$type & blok.core.html.HtmlEvents, $nodeType>
           ):blok.VNode {
-            return VComponent(
-              ${nt}.get($v{prefix != null ? '$prefix:${tag.name}' : name}),
-              props
-            );
+            return ${nt}.create(
+              $v{prefix != null ? '$prefix:${tag.name}' : name}, {
+                attrs: attrs,
+                key: attrs.key,
+                ref: attrs.ref,
+                children: children.toArray()
+              });
           }
         }).fields);
 
@@ -51,15 +59,17 @@ class HtmlBuilder {
         var type = tag.type.toComplexType();
         fields = fields.concat((macro class {
           public static inline function $name(
-            props:blok.core.html.HtmlBaseProps<$type & blok.core.html.HtmlEvents, $nodeType>
+            attrs:$type & blok.core.html.HtmlEvents & {
+              ?key:Key,
+              ?ref:(node:$nodeType)->Void,
+            }
+            // props:blok.core.html.HtmlBaseProps<$type & blok.core.html.HtmlEvents, $nodeType>
           ):blok.VNode {
-            return VComponent(
-              ${nt}.get($v{prefix != null ? '$prefix:${tag.name}' : name}),
-              {
-                attrs: props.attrs,
-                ref: props.ref
-              }
-            );
+            return ${nt}.create($v{prefix != null ? '$prefix:${tag.name}' : name}, {
+              attrs: attrs,
+              ref: attrs.ref,
+              key: attrs.key
+            });
           }
         }).fields);
     }

@@ -6,6 +6,6 @@
   "releasenote": "Pre-release",
   "license": "MIT",
   "dependencies": {
-    "blok.core": "0.0.4"
+    "blok.core": "0.1.0"
   }
 }

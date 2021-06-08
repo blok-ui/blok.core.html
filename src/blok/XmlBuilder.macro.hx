@@ -50,29 +50,29 @@ class XmlBuilder {
           var children = generate(node, isSvg);
           
           if (isSvg) {
-            macro blok.Svg.$name({
-              attrs: ${ {
+            macro blok.Svg.$name(
+              ${ {
                 expr: EObjectDecl(attrs),
                 pos: pos
               } },
-              children: [ $a{children} ]
-            });
+              ...[ $a{children} ]
+            );
           } else switch generate(node, false) {
             case children if (children.length > 0):
-              macro blok.Html.$name({
-                attrs: ${ {
+              macro blok.Html.$name(
+                ${ {
                   expr: EObjectDecl(attrs),
                   pos: pos
                 } },
-                children: [ $a{children} ]
-              });
+                $a{children}
+              );
             default:
-              macro blok.Html.$name({
-                attrs: ${ {
+              macro blok.Html.$name(
+                ${ {
                   expr: EObjectDecl(attrs),
                   pos: pos
                 } }
-              });
+              );
           }
 
         case PCData if (!isSvg):
