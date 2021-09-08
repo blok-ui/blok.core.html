@@ -2,10 +2,10 @@
   "name": "blok.core.html",
   "contributors": [ "wartman" ],
   "classPath": "src",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "releasenote": "Pre-release",
   "license": "MIT",
   "dependencies": {
-    "blok.core": "0.3.1"
+    "blok.core": "0.3.2"
   }
 }
