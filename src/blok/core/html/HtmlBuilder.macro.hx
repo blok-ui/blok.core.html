@@ -1,5 +1,6 @@
 package blok.core.html;
 
+import blok.tools.ClassBuilder;
 import haxe.macro.Type;
 import haxe.macro.Expr;
 import haxe.macro.Context;
@@ -27,7 +28,7 @@ class HtmlBuilder {
     ?prefix:String
   ) {
     var nodeType = BuilderHelpers.extractComplexTypeFromExpr(navtiveVNodeFactory);
-    var fields = Context.getBuildFields();
+    var builder = ClassBuilder.fromContext();
     var nt = macro $p{nodeTypePath.split('.')};
     var tags = getTags(tagPath);
 
@@ -35,14 +36,13 @@ class HtmlBuilder {
       case TagNormal:
         var name = tag.name;
         var type = tag.type.toComplexType();
-        fields = fields.concat((macro class {
+        builder.add(macro class {
           public static inline function $name(
             attrs:$type & blok.core.html.HtmlEvents & {
               ?key:Key,
               ?ref:(node:$nodeType)->Void,
             },
             ...children:VNode
-            // props:blok.core.html.HtmlBaseProps.HtmlChildrenProps<$type & blok.core.html.HtmlEvents, $nodeType>
           ):blok.VNode {
             return ${nt}.create(
               $v{prefix != null ? '$prefix:${tag.name}' : name}, {
@@ -52,18 +52,17 @@ class HtmlBuilder {
                 children: children.toArray()
               });
           }
-        }).fields);
+        });
 
       default:
         var name = tag.name;
         var type = tag.type.toComplexType();
-        fields = fields.concat((macro class {
+        builder.add(macro class {
           public static inline function $name(
             attrs:$type & blok.core.html.HtmlEvents & {
               ?key:Key,
               ?ref:(node:$nodeType)->Void,
             }
-            // props:blok.core.html.HtmlBaseProps<$type & blok.core.html.HtmlEvents, $nodeType>
           ):blok.VNode {
             return ${nt}.create($v{prefix != null ? '$prefix:${tag.name}' : name}, {
               attrs: attrs,
@@ -71,10 +70,10 @@ class HtmlBuilder {
               key: attrs.key
             });
           }
-        }).fields);
+        });
     }
 
-    return fields;
+    return builder.export();
   }
 
   static function getTags(tagPath:String):Array<TagInfo> {
