@@ -15,7 +15,7 @@ class ResultHandler<Data, Error> extends Component implements Hydratable {
     public function hydrate(
       firstNode:js.html.Node,
       registerEffect:(effect:()->Void)->Void,
-      next:(widget:Widget)->Void
+      next:()->Void
     ) {
       result.handle(result -> switch result {
         case Suspended:
@@ -27,7 +27,7 @@ class ResultHandler<Data, Error> extends Component implements Hydratable {
             getPlatform(),
             firstNode,
             registerEffect,
-            () -> next(this)
+            next
           );
           Handled;
       });

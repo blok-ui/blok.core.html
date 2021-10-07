@@ -5,7 +5,7 @@ interface Hydratable {
     public function hydrate(
       firstNode:js.html.Node,
       registerEffect:(effect:()->Void)->Void,
-      next:(widget:Widget)->Void
+      next:()->Void
     ):Void;
   #end
 }
