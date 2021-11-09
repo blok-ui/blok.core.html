@@ -3,7 +3,7 @@ package blok.core.html;
 // @todo: @:html(...) and @:jsOnly currently have no effect.
 
 // From https://github.com/haxetink/tink_domspec/blob/master/src/tink/domspec/Attributes.hx
-typedef GlobalAttr = {
+typedef GlobalAttr = AriaAttributes & {
   @:html('class') @:optional var className:String;
   @:optional var id:String;
   @:optional var title:String;

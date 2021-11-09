@@ -45,12 +45,14 @@ class HtmlBuilder {
             ...children:VNode
           ):blok.VNode {
             return ${nt}.create(
-              $v{prefix != null ? '$prefix:${tag.name}' : name}, {
+              $v{prefix != null ? '$prefix:${tag.name}' : name}, 
+              {
                 attrs: attrs,
                 key: attrs.key,
                 ref: attrs.ref,
                 children: children.toArray()
-              });
+              }
+            );
           }
         });
 

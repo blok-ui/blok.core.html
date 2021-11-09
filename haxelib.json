@@ -2,10 +2,10 @@
   "name": "blok.core.html",
   "contributors": [ "wartman" ],
   "classPath": "src",
-  "version": "0.2.0",
-  "releasenote": "Result feature support",
+  "version": "0.3.0",
+  "releasenote": "Added Aria attrs",
   "license": "MIT",
   "dependencies": {
-    "blok.core": "0.5.0-alpha.1"
+    "blok.core": "0.5.0-alpha.3"
   }
 }
