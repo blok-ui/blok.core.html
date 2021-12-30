@@ -39,11 +39,11 @@ class HtmlBuilder {
         builder.add(macro class {
           public static inline function $name(
             attrs:$type & blok.html.HtmlEvents & {
-              ?key:Key,
+              ?key:blok.ui.Key,
               ?ref:(node:$nodeType)->Void,
             },
             ...children:VNode
-          ):blok.VNode {
+          ):blok.ui.VNode {
             return ${nt}.create(
               $v{prefix != null ? '$prefix:${tag.name}' : name}, 
               {
@@ -62,10 +62,10 @@ class HtmlBuilder {
         builder.add(macro class {
           public static inline function $name(
             attrs:$type & blok.html.HtmlEvents & {
-              ?key:Key,
+              ?key:blok.ui.Key,
               ?ref:(node:$nodeType)->Void,
             }
-          ):blok.VNode {
+          ):blok.ui.VNode {
             return ${nt}.create($v{prefix != null ? '$prefix:${tag.name}' : name}, {
               attrs: attrs,
               ref: attrs.ref,

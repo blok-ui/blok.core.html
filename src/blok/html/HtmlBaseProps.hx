@@ -1,7 +1,7 @@
 package blok.html;
 
-import blok.Key;
-import blok.VNode;
+import blok.ui.Key;
+import blok.ui.VNode;
 
 typedef HtmlBaseProps<Attrs:{}, RealNode> = {
   ?ref:(node:RealNode)->Void,
