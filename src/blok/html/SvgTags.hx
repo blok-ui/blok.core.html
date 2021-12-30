@@ -1,6 +1,6 @@
-package blok.core.html;
+package blok.html;
 
-import blok.core.html.SvgAttributes;
+import blok.html.SvgAttributes;
 
 typedef SvgTags = {
   var normal:{

@@ -1,6 +1,6 @@
-package blok.core.html;
+package blok.html;
 
-import blok.core.html.HtmlAttributes;
+import blok.html.HtmlAttributes;
 
 // Coppied from: https://github.com/haxetink/tink_svgspec
 // svg attr reference: https://github.com/dumistoklus/svg-xsd-schema/blob/master/svg.xsd

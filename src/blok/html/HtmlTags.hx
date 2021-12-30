@@ -1,6 +1,6 @@
-package blok.core.html;
+package blok.html;
 
-import blok.core.html.HtmlAttributes;
+import blok.html.HtmlAttributes;
 
 // We're not using tink directly as I don't need everything it provides.
 // From: https://github.com/haxetink/tink_domspec/blob/master/src/tink/domspec/Tags.hx

@@ -1,4 +1,4 @@
-package blok;
+package blok.html;
 
 class Xml {
   /**
@@ -19,6 +19,6 @@ class Xml {
     ```
   **/
   public static macro function create(e) {
-    return blok.XmlBuilder.parseXmlExpr(e);
+    return blok.html.XmlBuilder.parseXmlExpr(e);
   }
 }

@@ -1,4 +1,4 @@
-package blok;
+package blok.html;
 
 import haxe.macro.Expr;
 import haxe.macro.Context;

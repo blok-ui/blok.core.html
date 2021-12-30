@@ -1,4 +1,4 @@
-package blok.core.html;
+package blok.html;
 
 import blok.Key;
 import blok.VNode;

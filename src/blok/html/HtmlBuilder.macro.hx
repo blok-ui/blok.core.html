@@ -1,10 +1,10 @@
-package blok.core.html;
+package blok.html;
 
-import blok.tools.ClassBuilder;
 import haxe.macro.Type;
 import haxe.macro.Expr;
 import haxe.macro.Context;
-import blok.tools.BuilderHelpers;
+import blok.macro.ClassBuilder;
+import blok.macro.BuilderHelpers;
 
 using haxe.macro.Tools;
 
@@ -38,7 +38,7 @@ class HtmlBuilder {
         var type = tag.type.toComplexType();
         builder.add(macro class {
           public static inline function $name(
-            attrs:$type & blok.core.html.HtmlEvents & {
+            attrs:$type & blok.html.HtmlEvents & {
               ?key:Key,
               ?ref:(node:$nodeType)->Void,
             },
@@ -61,7 +61,7 @@ class HtmlBuilder {
         var type = tag.type.toComplexType();
         builder.add(macro class {
           public static inline function $name(
-            attrs:$type & blok.core.html.HtmlEvents & {
+            attrs:$type & blok.html.HtmlEvents & {
               ?key:Key,
               ?ref:(node:$nodeType)->Void,
             }

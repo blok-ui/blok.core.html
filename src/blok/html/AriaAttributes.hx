@@ -1,4 +1,4 @@
-package blok.core.html;
+package blok.html;
 
 // Taken from: https://github.com/haxetink/tink_domspec/blob/master/src/tink/domspec/Aria.hx
 typedef AriaAttributes = {

@@ -1,4 +1,4 @@
-package blok.core.html;
+package blok.html;
 
 interface Hydratable {
   #if blok.platform.dom
