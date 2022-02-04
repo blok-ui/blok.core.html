@@ -50,7 +50,7 @@ class XmlBuilder {
           var children = generate(node, isSvg);
           
           if (isSvg) {
-            macro blok.Svg.$name(
+            macro blok.ui.Svg.$name(
               ${ {
                 expr: EObjectDecl(attrs),
                 pos: pos
@@ -59,7 +59,7 @@ class XmlBuilder {
             );
           } else switch generate(node, false) {
             case children if (children.length > 0):
-              macro blok.Html.$name(
+              macro blok.ui.Html.$name(
                 ${ {
                   expr: EObjectDecl(attrs),
                   pos: pos
