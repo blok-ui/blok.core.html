@@ -4,7 +4,7 @@ interface Hydratable {
   #if blok.platform.dom
     public function hydrate(
       firstNode:js.html.Node,
-      registerEffect:(effect:()->Void)->Void,
+      effects:blok.ui.Effect,
       next:()->Void
     ):Void;
   #end
