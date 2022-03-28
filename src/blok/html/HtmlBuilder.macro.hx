@@ -24,10 +24,10 @@ class HtmlBuilder {
   public static function build(
     tagPath:String,
     nodeTypePath:String,
-    navtiveVNodeFactory:Expr, 
+    navtiveWidgetFactory:Expr, 
     ?prefix:String
   ) {
-    var nodeType = BuilderHelpers.extractComplexTypeFromExpr(navtiveVNodeFactory);
+    var nodeType = BuilderHelpers.extractComplexTypeFromExpr(navtiveWidgetFactory);
     var builder = ClassBuilder.fromContext();
     var nt = macro $p{nodeTypePath.split('.')};
     var tags = getTags(tagPath);
@@ -42,8 +42,8 @@ class HtmlBuilder {
               ?key:blok.ui.Key,
               ?ref:(node:$nodeType)->Void,
             },
-            ...children:VNode
-          ):blok.ui.VNode {
+            ...children:blok.ui.Widget
+          ):blok.ui.Widget {
             return ${nt}.create(
               $v{prefix != null ? '$prefix:${tag.name}' : name}, 
               {
@@ -65,7 +65,7 @@ class HtmlBuilder {
               ?key:blok.ui.Key,
               ?ref:(node:$nodeType)->Void,
             }
-          ):blok.ui.VNode {
+          ):blok.ui.Widget {
             return ${nt}.create($v{prefix != null ? '$prefix:${tag.name}' : name}, {
               attrs: attrs,
               ref: attrs.ref,

@@ -1,7 +1,7 @@
 package blok.html;
 
 import blok.ui.Key;
-import blok.ui.VNode;
+import blok.ui.Widget;
 
 typedef HtmlBaseProps<Attrs:{}, RealNode> = {
   ?ref:(node:RealNode)->Void,
@@ -10,5 +10,5 @@ typedef HtmlBaseProps<Attrs:{}, RealNode> = {
 }
 
 typedef HtmlChildrenProps<Attrs:{}, RealNode> = HtmlBaseProps<Attrs, RealNode> & {
-  ?children:Array<VNode>
+  ?children:Array<Widget>
 }

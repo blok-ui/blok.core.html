@@ -67,7 +67,7 @@ class XmlBuilder {
                 $a{children}
               );
             default:
-              macro blok.Html.$name(
+              macro blok.ui.Html.$name(
                 ${ {
                   expr: EObjectDecl(attrs),
                   pos: pos
@@ -77,13 +77,13 @@ class XmlBuilder {
 
         case PCData if (!isSvg):
           var text = node.nodeValue;
-          macro blok.Html.text($v{text});
+          macro blok.ui.Html.text($v{text});
           
         default: null;
       } ].filter(n -> n != null);
     }
 
-    var vnodes = generate(xml);
-    return if (vnodes.length == 1) vnodes[0] else macro blok.core.VNode.VFragment([ $a{vnodes} ]);
+    var widgets = generate(xml);
+    return if (widgets.length == 1) widgets[0] else macro new blok.ui.FragmentWidget([ $a{widgets} ]);
   }
 }

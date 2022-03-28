@@ -6,6 +6,6 @@
   "releasenote": "Update to handle new blok.core structure",
   "license": "MIT",
   "dependencies": {
-    "blok.core": "0.6.0-alpha.1"
+    "blok.core": "0.7.0-alpha.1"
   }
 }

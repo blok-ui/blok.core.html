@@ -2,7 +2,7 @@ package blok.html;
 
 class Xml {
   /**
-    Parse XML into Blok VNodes.
+    Parse XML into Blok Widgets.
   
     Note: this is NOT a fully featured DSL like HXX. It's really only designed
     for things like copying svg or some static HTML. String interpolation WILL
